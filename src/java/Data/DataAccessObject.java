@@ -41,6 +41,29 @@ public class DataAccessObject {
         }
         return true;
     }
+    
+    public User getUserByUsername(String username){
+        User user = null;
+        PreparedStatement stmt = null;
+        String SQL = "SELECT * FROM users WHERE uname = ?";
+        try {
+            stmt = conn.prepareStatement(SQL);
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                int uno = rs.getInt("uno");
+                String uname = rs.getString("uname");
+                String hashedPW = rs.getString("hashedpw");
+                String salt = rs.getString("salt");
+                float balance = rs.getFloat("balance");
+                user = new User(uno, uname, hashedPW, salt, balance);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return user;
+    } 
 
     public String getPriceLevel(int pno) {
         String level = null;

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Data.DataAccessObject;
+import Data.User;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,8 +19,9 @@ public class createuser extends HttpServlet {
         DBConnector conn = new DBConnector();
         DataAccessObject DAO = new DataAccessObject(conn);
         
-        DAO.createUser("blin", "blin");
-            
+        //DAO.createUser("blin", "blin");
+          User user = DAO.getUserByUsername("blin");
+          System.out.println("Blin: " + user.getBalance() + " + " + user.getUname());
     }
     
 
