@@ -12,11 +12,11 @@ public class DBConnector {
 
     private Connection connection = null;
 
-    private static final String IP = "127.0.0.1";
+    private static final String IP = "46.101.97.181";
     private static final String PORT = "3306";
     private static final String DATABASE = "cupcakeshop";
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "root";
+    private static final String USERNAME = "servletuser";
+    private static final String PASSWORD = "ServletSucks";
 
     public DBConnector() throws Exception {
         Class.forName("com.mysql.jdbc.Driver").newInstance();
