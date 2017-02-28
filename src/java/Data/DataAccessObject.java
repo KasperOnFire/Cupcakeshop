@@ -34,7 +34,7 @@ public class DataAccessObject {
             stmt.setString(1, uname);
             stmt.setString(2, pass.get_SHA_512_SecurePassword(password, salt));
             stmt.setString(3, salt);
-            stmt.setInt(4, 100000);
+            stmt.setInt(4, 25);
             stmt.executeUpdate();
         } catch (Exception e) {
             return false;
