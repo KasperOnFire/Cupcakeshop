@@ -1,31 +1,50 @@
+
 import Data.DBConnector;
+import Data.DataAccessObject;
+import Data.Password;
+import Data.User;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Data.DataAccessObject;
-import Data.User;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 
-@WebServlet(urlPatterns = {"/createuser"})
-public class createuser extends HttpServlet {
+@WebServlet(urlPatterns = {"/login"})
+public class login extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {
-        
+
+        HttpSession session = request.getSession();
+
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        
+
+        Password pass = new Password();
+
         DBConnector conn = new DBConnector();
         DataAccessObject DAO = new DataAccessObject(conn);
-        
-        DAO.createUser(username, password); //VIRKER
-        //User user = DAO.getUserByUsername("blin"); //VIRKER
+
+        User user = DAO.getUserByUsername(username);
+        if (session.getAttribute("loggedIn") == null) {
+            session.setAttribute("loggedIn", false);
+        }
+
+        if ((Boolean) session.getAttribute("loggedIn")) {
+            if (user.getHashedPW().equals(pass.get_SHA_512_SecurePassword(password, user.getSalt()))) {
+                
+            }else{
+                getServletContext().getRequestDispatcher("login.jsp").forward(request, response);
+            }
+        } else {
+            getServletContext().getRequestDispatcher("login.jsp").forward(request, response);
+        }
+
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -42,7 +61,7 @@ public class createuser extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(createuser.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -60,7 +79,7 @@ public class createuser extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(createuser.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
