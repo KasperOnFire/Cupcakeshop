@@ -1,4 +1,4 @@
-package Data;
+package User;
 
 public class User {
     

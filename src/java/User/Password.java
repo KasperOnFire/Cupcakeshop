@@ -1,4 +1,4 @@
-package Data;
+package User;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;

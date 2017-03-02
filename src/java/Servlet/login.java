@@ -1,8 +1,10 @@
+package Servlet;
+
 
 import Data.DBConnector;
 import Data.DataAccessObject;
-import Data.Password;
-import Data.User;
+import User.Password;
+import User.User;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
