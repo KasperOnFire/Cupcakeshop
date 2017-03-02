@@ -34,14 +34,22 @@ public class login extends HttpServlet {
             session.setAttribute("loggedIn", false);
         }
 
-        if ((Boolean) session.getAttribute("loggedIn")) {
+        if (!(Boolean) session.getAttribute("loggedIn")) {
+            System.out.println("saved hash: " + user.getHashedPW() + "    generated hash: " + pass.get_SHA_512_SecurePassword(password, user.getSalt()));
             if (user.getHashedPW().equals(pass.get_SHA_512_SecurePassword(password, user.getSalt()))) {
-                
+                session.setAttribute("loggedIn", true);
+                session.setAttribute("user", user);
+                session.setAttribute("username", user.getUname());
+                getServletContext().getRequestDispatcher("/test.jsp").forward(request, response);                
             }else{
-                getServletContext().getRequestDispatcher("login.jsp").forward(request, response);
+                String eMessage = "Wrong username / password";
+                request.setAttribute("errorCode", eMessage);
+                getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
             }
         } else {
-            getServletContext().getRequestDispatcher("login.jsp").forward(request, response);
+            String eMessage = "Already logged in!";
+            request.setAttribute("errorCode", eMessage);
+            getServletContext().getRequestDispatcher("/test.jsp").forward(request, response);
         }
 
     }

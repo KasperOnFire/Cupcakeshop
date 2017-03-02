@@ -12,6 +12,8 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <p>${errorCode}</p>
+        
         <form action="login" method="post">
             <input type="text" name="username" placeholder="username">
             <input type="password" name="password" placeholder="username">
