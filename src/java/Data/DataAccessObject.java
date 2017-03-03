@@ -101,6 +101,7 @@ public class DataAccessObject {
                 topArray.add(toppings);
             }
         } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
         return topArray;
@@ -123,6 +124,7 @@ public class DataAccessObject {
                 botArray.add(bottoms);
             }
         } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
         return botArray;    
