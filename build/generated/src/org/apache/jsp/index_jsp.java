@@ -57,44 +57,42 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write("<!DOCTYPE html>\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("    <html>\n");
-      out.write("\n");
-      out.write("    <head>\n");
-      out.write("        <title>Home</title>\n");
-      out.write("        <meta charset=\"UTF-8\">\n");
-      out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n");
-      out.write("        <link rel=\"icon\" href=\"favicon.png\">\n");
-      out.write("        <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\">\n");
-      out.write("        <link rel=\"stylesheet\" href=\"main.css\">\n");
-      out.write("        <link href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\">\n");
-      out.write("    </head>\n");
-      out.write("\n");
-      out.write("    <body>\n");
-      out.write("        <nav class=\"navbar navbar-default navbar-fixed-top\">\n");
-      out.write("            <div class=\"container\">\n");
-      out.write("                <ul class=\"nav navbar-nav\">\n");
-      out.write("                    <li class=\"active\"><a href=\"index.jsp\">Home</a></li>\n");
-      out.write("                    <li><a href=\"shop\">Shop</a></li>\n");
-      out.write("                </ul>\n");
-      out.write("                ");
+      out.write("<!DOCTYPE html>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("<html>\r\n");
+      out.write("\r\n");
+      out.write("    <head>\r\n");
+      out.write("        <title>Home</title>\r\n");
+      out.write("        <meta charset=\"UTF-8\">\r\n");
+      out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n");
+      out.write("        <link rel=\"icon\" href=\"img/favicon.png\">\r\n");
+      out.write("        <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\">\r\n");
+      out.write("        <link rel=\"stylesheet\" href=\"css/main.css\">\r\n");
+      out.write("        <link href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\">\r\n");
+      out.write("    </head>\r\n");
+      out.write("\r\n");
+      out.write("    <body>\r\n");
+      out.write("        <nav class=\"navbar navbar-default navbar-fixed-top\">\r\n");
+      out.write("            <div class=\"container\">\r\n");
+      out.write("                <ul class=\"nav navbar-nav\">\r\n");
+      out.write("                    <li class=\"active\"><a href=\"index.jsp\">Home</a></li>\r\n");
+      out.write("                    <li><a href=\"shop\">Shop</a></li>\r\n");
+      out.write("                </ul>\r\n");
+      out.write("                <ul class=\"nav navbar-nav navbar-right\">\r\n");
+      out.write("                    ");
       if (_jspx_meth_c_choose_0(_jspx_page_context))
         return;
-      out.write("\n");
-      out.write("            </div>\n");
-      out.write("        </nav>\n");
-      out.write("        <div class=\"main-div\">\n");
-      out.write("            <h1>Cupcake Shop!</h1>\n");
-      out.write("            <a href=\"#\">Make your own cupcake!</a>\n");
-      out.write("            <a href=\"login.jsp\">Login here!</a>\n");
-      out.write("            <a href=\"createuser.jsp\">Create user</a>\n");
-      out.write("\n");
-      out.write("        </div>\n");
-      out.write("    </body>\n");
-      out.write("\n");
-      out.write("    </html>");
+      out.write("\r\n");
+      out.write("                </ul>\r\n");
+      out.write("            </div>\r\n");
+      out.write("        </nav>\r\n");
+      out.write("        <div class=\"main-div\">\r\n");
+      out.write("            <h1>Cupcake Shop!</h1>\r\n");
+      out.write("        </div>\r\n");
+      out.write("    </body>\r\n");
+      out.write("\r\n");
+      out.write("</html>");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;
@@ -119,16 +117,16 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
     int _jspx_eval_c_choose_0 = _jspx_th_c_choose_0.doStartTag();
     if (_jspx_eval_c_choose_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
-        out.write("\n");
-        out.write("                    ");
+        out.write("\r\n");
+        out.write("                        ");
         if (_jspx_meth_c_when_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_choose_0, _jspx_page_context))
           return true;
-        out.write("\n");
-        out.write("                    ");
+        out.write("\r\n");
+        out.write("                            ");
         if (_jspx_meth_c_otherwise_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_choose_0, _jspx_page_context))
           return true;
-        out.write("\n");
-        out.write("                ");
+        out.write("\r\n");
+        out.write("                        ");
         int evalDoAfterBody = _jspx_th_c_choose_0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;
@@ -150,17 +148,15 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
     org.apache.taglibs.standard.tag.rt.core.WhenTag _jspx_th_c_when_0 = (org.apache.taglibs.standard.tag.rt.core.WhenTag) _jspx_tagPool_c_when_test.get(org.apache.taglibs.standard.tag.rt.core.WhenTag.class);
     _jspx_th_c_when_0.setPageContext(_jspx_page_context);
     _jspx_th_c_when_0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_choose_0);
-    _jspx_th_c_when_0.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${loggedIn = true}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
+    _jspx_th_c_when_0.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${loggedIn == true}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
     int _jspx_eval_c_when_0 = _jspx_th_c_when_0.doStartTag();
     if (_jspx_eval_c_when_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
-        out.write("\n");
-        out.write("                        <ul class=\"nav navbar-nav navbar-right\">\n");
-        out.write("                            <li><a href=\"basket\">Basket</a></li>\n");
-        out.write("                            <li><a href=\"account\">Account</a></li>\n");
-        out.write("                            <li><a href=\"logout\">Logut</a></li>\n");
-        out.write("                        </ul>\n");
-        out.write("                    ");
+        out.write("\r\n");
+        out.write("                            <li><a href=\"basket\">Basket</a></li>\r\n");
+        out.write("                            <li><a href=\"account\">Account</a></li>\r\n");
+        out.write("                            <li><a href=\"logout\">Logut</a></li>\r\n");
+        out.write("                            ");
         int evalDoAfterBody = _jspx_th_c_when_0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;
@@ -185,12 +181,10 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
     int _jspx_eval_c_otherwise_0 = _jspx_th_c_otherwise_0.doStartTag();
     if (_jspx_eval_c_otherwise_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
-        out.write("\n");
-        out.write("                        <ul class=\"nav navbar-nav navbar-right\">\n");
-        out.write("                            <li><a href=\"login.jsp\">Login</a></li>\n");
-        out.write("                            <li><a href=\"createuser.jsp\">Register</a></li>\n");
-        out.write("                        </ul>\n");
-        out.write("                    ");
+        out.write("\r\n");
+        out.write("                            <li><a href=\"login.jsp\">Login</a></li>\r\n");
+        out.write("                            <li><a href=\"createuser.jsp\">Register</a></li>\r\n");
+        out.write("                            ");
         int evalDoAfterBody = _jspx_th_c_otherwise_0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;
