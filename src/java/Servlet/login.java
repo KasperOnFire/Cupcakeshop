@@ -1,6 +1,5 @@
 package Servlet;
 
-
 import Data.DBConnector;
 import Data.DataAccessObject;
 import User.Password;
@@ -37,12 +36,11 @@ public class login extends HttpServlet {
         }
 
         if (!(Boolean) session.getAttribute("loggedIn")) {
-            System.out.println("saved hash: " + user.getHashedPW() + "    generated hash: " + pass.get_SHA_512_SecurePassword(password, user.getSalt()));
             if (user.getHashedPW().equals(pass.get_SHA_512_SecurePassword(password, user.getSalt()))) {
                 session.setAttribute("loggedIn", true);
                 session.setAttribute("user", user);
                 session.setAttribute("username", user.getUname());
-                getServletContext().getRequestDispatcher("/test.jsp").forward(request, response);                
+                getServletContext().getRequestDispatcher("/shop.jsp").forward(request, response);                
             }else{
                 String eMessage = "Wrong username / password";
                 request.setAttribute("errorCode", eMessage);
