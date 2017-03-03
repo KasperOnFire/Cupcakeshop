@@ -1,11 +1,14 @@
 package Data;
 
+import Cupcake.Bottom;
 import Cupcake.Cupcake;
+import Cupcake.Toppings;
 import User.User;
 import User.Password;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -78,6 +81,51 @@ public class DataAccessObject {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    public ArrayList getToppings(){
+        Toppings toppings = null;
+        ArrayList<Toppings> topArray = new ArrayList();
+        
+        PreparedStatement stmt = null;
+        String SQL = "SELECT * FROM toppings";
+        
+        try {
+            stmt = conn.prepareStatement(SQL);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                int tno = rs.getInt("tno");
+                String topping = rs.getString("topping");
+                float price = rs.getFloat("price");
+                toppings = new Toppings(tno, topping, price);
+                topArray.add(toppings);
+            }
+        } catch (Exception e) {
+            return null;
+        }
+        return topArray;
+    }
+    
+    public ArrayList getBottom(){        
+        Bottom bottoms = null;
+        ArrayList<Bottom> botArray = new ArrayList();
+        PreparedStatement stmt = null;
+        String SQL = "SELECT * FROM bottoms";
+        
+        try {
+            stmt = conn.prepareStatement(SQL);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                int bno = rs.getInt("bno");
+                String bottom = rs.getString("bottom");
+                float price = rs.getFloat("price");
+                bottoms = new Bottom(bno, bottom, price);
+                botArray.add(bottoms);
+            }
+        } catch (Exception e) {
+            return null;
+        }
+        return botArray;    
     }
     
     public Cupcake getCupcake(String bottom, String topping, float price) {
