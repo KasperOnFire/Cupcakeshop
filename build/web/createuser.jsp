@@ -17,7 +17,7 @@
     <body>
         <div>
             <br>
-            <form action="createuser" method="post">
+            <form action="createuser" method="get">
                 <input type="text" placeholder="username" name="username">
                 <br>
                 <br>
