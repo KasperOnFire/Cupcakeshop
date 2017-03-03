@@ -40,7 +40,7 @@ public class login extends HttpServlet {
                 session.setAttribute("loggedIn", true);
                 session.setAttribute("user", user);
                 session.setAttribute("username", user.getUname());
-                getServletContext().getRequestDispatcher("/shop.jsp").forward(request, response);                
+                getServletContext().getRequestDispatcher("/test.jsp").forward(request, response);                
             }else{
                 String eMessage = "Wrong username / password";
                 request.setAttribute("errorCode", eMessage);
