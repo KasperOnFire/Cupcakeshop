@@ -35,7 +35,9 @@ public class shop extends HttpServlet {
 
         
         if(request.getParameter("addToBasket") != null){
-            //DO BASKET STUFF
+            request.getParameter("bottom");
+            request.getParameter("topping");
+            
         }
         
         ArrayList<Bottom> bottoms = DAO.getBottom();
