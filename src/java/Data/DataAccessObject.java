@@ -1,11 +1,15 @@
 package Data;
 
+import Cupcake.Bottom;
 import Cupcake.Cupcake;
+import Cupcake.Orders;
+import Cupcake.Toppings;
 import User.User;
 import User.Password;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -78,6 +82,112 @@ public class DataAccessObject {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public ArrayList getOrdersByName(String username){
+        Orders order = null;
+        ArrayList<Orders> orderArray = new ArrayList();
+        User user = this.getUserByUsername(username);
+        
+        PreparedStatement stmt = null;
+        String SQL = "SELECT o.ono, o.uno, b.bottom, b.price bPrice, t.topping, t.price tPrice, o.totalPrice FROM orders o NATURAL JOIN toppings t, bottoms b WHERE o.bno = b.bno AND o.tno = t.tno ADN uno = ?";
+        try {
+            stmt = conn.prepareStatement(SQL);
+            stmt.setInt(1, user.getUno());
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                int ono = rs.getInt("ono");
+                int uno = rs.getInt("uno");
+                String bottom = rs.getString("bottom");
+                float bPrice = rs.getFloat("bPrice");
+                String topping = rs.getString("topping");
+                float tPrice = rs.getFloat("tPrice");
+                float totalPrice = rs.getFloat("totalPrice");
+                
+                order = new Orders(ono, uno, bottom, topping, tPrice, bPrice, totalPrice);
+                orderArray.add(order);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return orderArray;
+    }
+
+    public ArrayList getAllOrders(){
+        Orders order = null;
+        ArrayList<Orders> orderArray = new ArrayList();
+        
+        PreparedStatement stmt = null;
+        String SQL = "SELECT o.ono, o.uno, b.bottom, b.price bPrice, t.topping, t.price tPrice, o.totalPrice FROM orders o NATURAL JOIN toppings t, bottoms b WHERE o.bno = b.bno AND o.tno = t.tno;";
+        try {
+            stmt = conn.prepareStatement(SQL);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                int ono = rs.getInt("ono");
+                int uno = rs.getInt("uno");
+                String bottom = rs.getString("bottom");
+                float bPrice = rs.getFloat("bPrice");
+                String topping = rs.getString("topping");
+                float tPrice = rs.getFloat("tPrice");
+                float totalPrice = rs.getFloat("totalPrice");
+                
+                order = new Orders(ono, uno, bottom, topping, tPrice, bPrice, totalPrice);
+                
+                orderArray.add(order);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return orderArray;
+    }
+    
+    public ArrayList getToppings(){
+        Toppings toppings = null;
+        ArrayList<Toppings> topArray = new ArrayList();
+        
+        PreparedStatement stmt = null;
+        String SQL = "SELECT * FROM toppings";
+        
+        try {
+            stmt = conn.prepareStatement(SQL);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                int tno = rs.getInt("tno");
+                String topping = rs.getString("topping");
+                float price = rs.getFloat("price");
+                toppings = new Toppings(tno, topping, price);
+                topArray.add(toppings);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return topArray;
+    }
+    
+    public ArrayList getBottom(){        
+        Bottom bottoms = null;
+        ArrayList<Bottom> botArray = new ArrayList();
+        PreparedStatement stmt = null;
+        String SQL = "SELECT * FROM bottoms";
+        
+        try {
+            stmt = conn.prepareStatement(SQL);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                int bno = rs.getInt("bno");
+                String bottom = rs.getString("bottom");
+                float price = rs.getFloat("price");
+                bottoms = new Bottom(bno, bottom, price);
+                botArray.add(bottoms);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return botArray;    
     }
     
     public Cupcake getCupcake(String bottom, String topping, float price) {

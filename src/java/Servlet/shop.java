@@ -1,10 +1,13 @@
 package Servlet;
 
+import Cupcake.Bottom;
+import Cupcake.Toppings;
 import Data.DBConnector;
 import Data.DataAccessObject;
 import User.Password;
-import User.User;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -14,8 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(urlPatterns = {"/login"})
-public class login extends HttpServlet {
+@WebServlet(name = "shop", urlPatterns = {"/shop"})
+public class shop extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {
@@ -30,27 +33,21 @@ public class login extends HttpServlet {
         DBConnector conn = new DBConnector();
         DataAccessObject DAO = new DataAccessObject(conn);
 
-        User user = DAO.getUserByUsername(username);
-        if (session.getAttribute("loggedIn") == null) {
-            session.setAttribute("loggedIn", false);
+        
+        if(request.getParameter("addToBasket") != null){
+            request.getParameter("bottom");
+            request.getParameter("topping");
+            
+            
+            
         }
-
-        if (!(Boolean) session.getAttribute("loggedIn")) {
-            if (user.getHashedPW().equals(pass.get_SHA_512_SecurePassword(password, user.getSalt()))) {
-                session.setAttribute("loggedIn", true);
-                session.setAttribute("user", user);
-                getServletContext().getRequestDispatcher("/shop.jsp").forward(request, response);                
-            }else{
-                String eMessage = "Wrong username / password";
-                request.setAttribute("errorCode", eMessage);
-                getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
-            }
-        } else {
-            String eMessage = "Already logged in!";
-            request.setAttribute("errorCode", eMessage);
-            getServletContext().getRequestDispatcher("/test.jsp").forward(request, response);
-        }
-
+        
+        ArrayList<Bottom> bottoms = DAO.getBottom();
+        ArrayList<Toppings> toppings = DAO.getToppings();
+        
+        session.setAttribute("bottoms", bottoms);
+        session.setAttribute("toppings", toppings);
+    
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -68,7 +65,7 @@ public class login extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(shop.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -86,7 +83,7 @@ public class login extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(shop.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
