@@ -17,3 +17,9 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+nbproject/private/private.xml
+nbproject/private/private.properties
+build/generated/classes/org/apache/jsp/index_jsp.class
+build/generated/src/org/apache/jsp/index_jsp.class.smap
+build/generated/src/org/apache/jsp/index_jsp.java
+nbproject/private/private.properties

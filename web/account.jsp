@@ -16,31 +16,30 @@
         <!--navbar here -->
         <div class="main-div">
             <h1>Cupcakeshop</h1>
-            <h2>Your basket</h2>
+            <h2>Your orders</h2>
             <table class="baskettable">
                 <tr>
-                    <th>
-                    <td>Bottom</td>
-                    <td>Topping</td>
-                    <td>Amount</td>
-                    <td>Price</td>
+                    <th>Order no.</th>
+                    <th>Bottom</th>
+                    <th>Topping</th>
+                    <th>Amount</th>
+                    <th>Price</th>
+                    <th>Order Price</th>
                     </th>
                 </tr>
                 <!-- foreach here -->
                 <c:forEach items="${orders}" var="order">
                     <tr>
+                        <td value="${order.ono}">${order.ono}</td>
                     <td value="${order.bottom}">${order.bottom}</td>
                     <td value="${order.topping}">${order.topping}</td>
                     <td value="${order.amount}">${order.amount}</td>
-                    <td value="${order.price}">${order.price}</td>
+                    <td value="${order.price}">${order.price}</td>'
+                    <td value="${order.totalPrice}"></td>
                     </tr>
                     </c:forEach>
                 <!-- end foreach -->
             </table>
-            <form action="order" method="post">
-                <h3>Total price:</h3>
-                <h3 id="totalPrice">##,-</h3>
-            </form>
         </div>
     </body>
 </html>

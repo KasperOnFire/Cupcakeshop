@@ -10,7 +10,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Shop</title>
+        <link rel="stylesheet" href="css/main.css">
+        <link href="js/main.js"
     </head>
     <body>
         <!-- Navbar -->
@@ -29,6 +31,7 @@
                         <option value="${topping.name}">${topping.name} - ${topping.price}</option>
                     </c:forEach>
                 </select>
+                
                 <input type="submit" name="add" value="add">
             </form>
     </body>
