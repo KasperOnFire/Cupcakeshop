@@ -1,10 +1,13 @@
 package Servlet;
 
+import Cupcake.Bottom;
+import Cupcake.Toppings;
 import Data.DBConnector;
 import Data.DataAccessObject;
 import User.Password;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -35,7 +38,11 @@ public class shop extends HttpServlet {
             //DO BASKET STUFF
         }
         
+        ArrayList<Bottom> bottom = DAO.getBottom();
+        ArrayList<Toppings> toppings = DAO.getToppings();
         
+        session.setAttribute("bottom", bottom);
+        session.setAttribute("toppings", toppings);
     
     }
 
