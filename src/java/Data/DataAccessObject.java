@@ -90,7 +90,7 @@ public class DataAccessObject {
         User user = this.getUserByUsername(username);
         
         PreparedStatement stmt = null;
-        String SQL = "SELECT * FROM orders WHERE uno = ?";
+        String SQL = "SELECT o.ono, o.uno, b.bottom, b.price bPrice, t.topping, t.price tPrice, o.totalPrice FROM orders o NATURAL JOIN toppings t, bottoms b WHERE o.bno = b.bno AND o.tno = t.tno ADN uno = ?";
         try {
             stmt = conn.prepareStatement(SQL);
             stmt.setInt(1, user.getUno());
@@ -98,11 +98,13 @@ public class DataAccessObject {
             while(rs.next()){
                 int ono = rs.getInt("ono");
                 int uno = rs.getInt("uno");
-                int bno = rs.getInt("bno");
-                int tno = rs.getInt("tno");
+                String bottom = rs.getString("bottom");
+                float bPrice = rs.getFloat("bPrice");
+                String topping = rs.getString("topping");
+                float tPrice = rs.getFloat("tPrice");
                 float totalPrice = rs.getFloat("totalPrice");
                 
-                order = new Orders(ono, uno, bno, tno, totalPrice);
+                order = new Orders(ono, uno, bottom, topping, tPrice, bPrice, totalPrice);
                 orderArray.add(order);
             }
         } catch (Exception e) {
@@ -117,18 +119,21 @@ public class DataAccessObject {
         ArrayList<Orders> orderArray = new ArrayList();
         
         PreparedStatement stmt = null;
-        String SQL = "SELECT * FROM orders";
+        String SQL = "SELECT o.ono, o.uno, b.bottom, b.price bPrice, t.topping, t.price tPrice, o.totalPrice FROM orders o NATURAL JOIN toppings t, bottoms b WHERE o.bno = b.bno AND o.tno = t.tno;";
         try {
             stmt = conn.prepareStatement(SQL);
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
                 int ono = rs.getInt("ono");
                 int uno = rs.getInt("uno");
-                int bno = rs.getInt("bno");
-                int tno = rs.getInt("tno");
+                String bottom = rs.getString("bottom");
+                float bPrice = rs.getFloat("bPrice");
+                String topping = rs.getString("topping");
+                float tPrice = rs.getFloat("tPrice");
                 float totalPrice = rs.getFloat("totalPrice");
                 
-                order = new Orders(ono, uno, bno, tno, totalPrice);
+                order = new Orders(ono, uno, bottom, topping, tPrice, bPrice, totalPrice);
+                
                 orderArray.add(order);
             }
         } catch (Exception e) {

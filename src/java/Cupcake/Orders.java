@@ -7,15 +7,17 @@ public class Orders {
 
     int ono;
     int uno;
-    int bno;
-    int tno;
+    String bottom;
+    String topping;
     float totalPrice;
+    float tPrice;
+    float bPrice;
 
-    public Orders(int ono, int uno, int bno, int tno, float totalPrice) {
+    public Orders(int ono, int uno, String bottom, String topping, float tPrice, float bPrice, float totalPrice) {
         this.ono = ono;
         this.uno = uno;
-        this.bno = bno;
-        this.tno = tno;
+        this.bottom = bottom;
+        this.topping = topping;
         this.totalPrice = totalPrice;
     }
 
@@ -27,12 +29,12 @@ public class Orders {
         return uno;
     }
 
-    public int getBno() {
-        return bno;
+    public String getBottom() {
+        return bottom;
     }
 
-    public int getTno() {
-        return tno;
+    public String getTopping() {
+        return topping;
     }
 
     public float getTotalPrice() {
