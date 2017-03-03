@@ -2,6 +2,7 @@ package Data;
 
 import Cupcake.Bottom;
 import Cupcake.Cupcake;
+import Cupcake.Orders;
 import Cupcake.Toppings;
 import User.User;
 import User.Password;
@@ -81,6 +82,60 @@ public class DataAccessObject {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public ArrayList getOrdersByName(String username){
+        Orders order = null;
+        ArrayList<Orders> orderArray = new ArrayList();
+        User user = this.getUserByUsername(username);
+        
+        PreparedStatement stmt = null;
+        String SQL = "SELECT * FROM orders WHERE uno = ?";
+        try {
+            stmt = conn.prepareStatement(SQL);
+            stmt.setInt(1, user.getUno());
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                int ono = rs.getInt("ono");
+                int uno = rs.getInt("uno");
+                int bno = rs.getInt("bno");
+                int tno = rs.getInt("tno");
+                float totalPrice = rs.getFloat("totalPrice");
+                
+                order = new Orders(ono, uno, bno, tno, totalPrice);
+                orderArray.add(order);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return orderArray;
+    }
+
+    public ArrayList getAllOrders(){
+        Orders order = null;
+        ArrayList<Orders> orderArray = new ArrayList();
+        
+        PreparedStatement stmt = null;
+        String SQL = "SELECT * FROM orders";
+        try {
+            stmt = conn.prepareStatement(SQL);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                int ono = rs.getInt("ono");
+                int uno = rs.getInt("uno");
+                int bno = rs.getInt("bno");
+                int tno = rs.getInt("tno");
+                float totalPrice = rs.getFloat("totalPrice");
+                
+                order = new Orders(ono, uno, bno, tno, totalPrice);
+                orderArray.add(order);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return orderArray;
     }
     
     public ArrayList getToppings(){

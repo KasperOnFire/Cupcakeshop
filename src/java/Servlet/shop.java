@@ -38,6 +38,8 @@ public class shop extends HttpServlet {
             request.getParameter("bottom");
             request.getParameter("topping");
             
+            
+            
         }
         
         ArrayList<Bottom> bottoms = DAO.getBottom();
