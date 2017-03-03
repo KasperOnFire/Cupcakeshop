@@ -38,10 +38,10 @@ public class shop extends HttpServlet {
             //DO BASKET STUFF
         }
         
-        ArrayList<Bottom> bottom = DAO.getBottom();
+        ArrayList<Bottom> bottoms = DAO.getBottom();
         ArrayList<Toppings> toppings = DAO.getToppings();
         
-        session.setAttribute("bottom", bottom);
+        session.setAttribute("bottoms", bottoms);
         session.setAttribute("toppings", toppings);
     
     }
