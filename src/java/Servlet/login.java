@@ -39,7 +39,7 @@ public class login extends HttpServlet {
             if (user.getHashedPW().equals(pass.get_SHA_512_SecurePassword(password, user.getSalt()))) {
                 session.setAttribute("loggedIn", true);
                 session.setAttribute("user", user);
-                getServletContext().getRequestDispatcher("/shop.jsp").forward(request, response);         
+                getServletContext().getRequestDispatcher("/shop").forward(request, response);         
             }else{
                 String eMessage = "Wrong username / password";
                 request.setAttribute("errorCode", eMessage);
@@ -48,7 +48,7 @@ public class login extends HttpServlet {
         } else {
             String eMessage = "Already logged in!";
             request.setAttribute("errorCode", eMessage);
-            getServletContext().getRequestDispatcher("/shop.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/shop").forward(request, response);
         }
 
     }
