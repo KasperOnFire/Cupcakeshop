@@ -16,10 +16,31 @@
     </head>
     <body>
         <!--navbar here -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.jsp">Home</a></li>
+                    <li><a href="shop">Shop</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <c:choose>
+                        <c:when test="${loggedIn == true}">
+                            <li class="active"><a href="basket">Basket</a></li>
+                            <li><a href="account">Account</a></li>
+                            <li><a href="logout">Logut</a></li>
+                            </c:when>
+                            <c:otherwise>
+                            <li><a href="login.jsp">Login</a></li>
+                            <li><a href="createuser.jsp">Register</a></li>
+                            </c:otherwise>
+                        </c:choose>
+                </ul>
+            </div>
+        </nav>
         <div class="main-div">
             <h1>Cupcakeshop</h1>
             <h2>Your basket</h2>
-            <table class="table">
+            <table border="2" class="table">
                 <tr>
                     <th>Bottom</th>
                     <th>Topping</th>

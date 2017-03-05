@@ -37,7 +37,7 @@
         <div class="main-div">
             <h1>Hello World!</h1>
             <form action="shop" method="get">
-                <input type="hidden" name="addToBasket" value="addToBasket">
+                <input type="hidden" name="addToBasket" value="true">
                 <table border="2" class="table">
                     <p>Bottom</p>
                     <thead>
@@ -81,7 +81,7 @@
                 <br>
                 <input type="hidden" value="" name="bottom"
                 <input type="hidden" value="" name="topping"
-                <input type="submit" value="Add" onclick="calculatePrice()">
+                <input class="btn btn-primary" type="submit" value="Add" onclick="calculatePrice()">
             </form>
         </div>
     </body>
@@ -90,9 +90,9 @@
         function calculatePrice() {            
             var checked1 = document.querySelector('input[name = "toppingRad"]:checked').value.split(';');
             var checked2 = document.querySelector('input[name = "bottomRad"]:checked').value.split(';');
-           
-            var totalPrice = +checked1[1] + +checked2[1];
             
+            var totalPrice = +checked1[1] + +checked2[1];
+   
             document.getElementById('totalPriceLabel').innerHTML = totalPrice;
             document.getElementById('bottom').innerHTML = checked2[0];
             document.getElementById('topping').innerHTML = checked1[0];

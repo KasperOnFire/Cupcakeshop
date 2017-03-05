@@ -146,7 +146,7 @@ public class DataAccessObject {
         ArrayList<Toppings> topArray = new ArrayList();
 
         PreparedStatement stmt = null;
-        String SQL = "SELECT * FROM toppings";
+        String SQL = "SELECT * FROM cupcakeshop.toppings";
 
         try {
             stmt = conn.prepareStatement(SQL);
@@ -169,8 +169,7 @@ public class DataAccessObject {
         Bottom bottoms = null;
         ArrayList<Bottom> botArray = new ArrayList();
         PreparedStatement stmt = null;
-        String SQL = "SELECT * FROM bottoms";
-
+        String SQL = "SELECT * FROM cupcakeshop.bottoms";
         try {
             stmt = conn.prepareStatement(SQL);
             ResultSet rs = stmt.executeQuery();
