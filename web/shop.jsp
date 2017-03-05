@@ -77,8 +77,8 @@
                         </c:forEach>
                     </tbody>
                 </table>
-                
                 <p>Total price: </p> <label id="totalPriceLabel">#</label>
+                <br>
                 <input type="submit" value="Add">
             </form>
         </div>
