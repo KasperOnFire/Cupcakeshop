@@ -1,10 +1,12 @@
 package Servlet;
 
+import Cupcake.Cupcake;
 import Data.DBConnector;
 import Data.DataAccessObject;
 import User.Password;
 import User.User;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -39,6 +41,7 @@ public class login extends HttpServlet {
             if (user.getHashedPW().equals(pass.get_SHA_512_SecurePassword(password, user.getSalt()))) {
                 session.setAttribute("loggedIn", true);
                 session.setAttribute("user", user);
+                ArrayList<Cupcake> basket = new ArrayList();
                 getServletContext().getRequestDispatcher("/shop").forward(request, response);         
             }else{
                 String eMessage = "Wrong username / password";

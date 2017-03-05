@@ -34,7 +34,7 @@ public class shop extends HttpServlet {
 
         ArrayList<Cupcake> basket = (ArrayList<Cupcake>) session.getAttribute("basket");
         
-        if (basket == null) {
+        if (basket == null) { //BASKET ER ALTID NULL!?!?!?!??!?!?
             basket = new ArrayList<Cupcake>();
         }
 
