@@ -58,7 +58,8 @@
                 </c:forEach>
                 <!-- end foreach -->
             </table>
-            <form action="order" method="post">
+            <form action="basket" method="get">
+                <input class="btn btn-primary" type="submit" value="Order" name="order"/>
                 <h3>Total price:</h3>
                 <h3 id="totalPrice">##,-</h3>
             </form>

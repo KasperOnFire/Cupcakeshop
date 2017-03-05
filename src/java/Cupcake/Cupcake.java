@@ -1,7 +1,5 @@
 package Cupcake;
 
-
-
 public class Cupcake {
 
     private String bottom;
@@ -15,7 +13,6 @@ public class Cupcake {
         this.price = price;
         this.amount = amount;
     }
-
 
     public String getBottom() {
         return bottom;

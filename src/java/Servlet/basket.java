@@ -9,7 +9,6 @@ import Cupcake.*;
 import Data.*;
 import User.*;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,32 +34,25 @@ public class basket extends HttpServlet {
         
         HttpSession session = request.getSession();
         
-        ArrayList<Cupcake> basket = (ArrayList<Cupcake>) session.getAttribute("basket");
-        if (basket == null) {
-            basket = new ArrayList<Cupcake>();
+        ArrayList<Cupcake> basket = new ArrayList();
+        
+        if(session.getAttribute("basket") != null){
+            System.out.println("eey!");
+            basket = (ArrayList<Cupcake>) session.getAttribute("basket");
+            System.out.println("nope");
         }
         
-        String bottom = request.getParameter("bottomHid");
-        System.out.println(bottom);
-        String topping = request.getParameter("toppingHid");
-        System.out.println(topping);
-        float price = DAO.getPriceOfCupcake(bottom, topping);
-        System.out.println(price);
-        Cupcake c = new Cupcake(bottom, topping, price, 1);
-        basket.add(c);
-        
-        for (Cupcake cupcake : basket) {
-            System.out.println(cupcake.getBottom());
-            System.out.println(cupcake.getTopping());
-            System.out.println(cupcake.getPrice());
-            System.out.println(cupcake.getAmount());
+        if(session.getAttribute("order") != null){
+            for (Cupcake cupcake : basket) {
+                System.out.println("hey");
+                User user = (User) session.getAttribute("user");
+                System.out.println("nope");
+                int topNo = DAO.getNumberOfTopping(cupcake.getTopping());
+                int botNo = DAO.getNumberOfBottom(cupcake.getBottom());
+                float price = cupcake.getPrice();
+                DAO.createOrder(topNo, botNo, user.getUno(), price);
+            }
         }
-        
-        session.setAttribute("basket", basket);
-        User user = (User) request.getAttribute("user");
-        int topNo = DAO.getNumberOfTopping(topping);
-        int botNo = DAO.getNumberOfTopping(topping);
-        //DAO.createOrder(topNo, botNo, user.getUno(), price);
         
         request.getRequestDispatcher("/basket.jsp").forward(request, response);
     }

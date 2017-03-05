@@ -3,7 +3,6 @@ package Servlet;
 import Cupcake.*;
 import Data.DBConnector;
 import Data.DataAccessObject;
-import User.User;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -15,53 +14,48 @@ import javax.servlet.http.*;
 @WebServlet(name = "shop", urlPatterns = {"/shop"})
 public class shop extends HttpServlet {
 
-    DBConnector conn;
-    DataAccessObject DAO;
-
-    public shop() throws Exception {
-        this.conn = new DBConnector();
-        DAO = new DataAccessObject(conn);
-    }
-
+//    DBConnector conn;
+//    DataAccessObject DAO;
+//
+//    public shop() throws Exception {
+//        this.conn = new DBConnector();
+//        DAO = new DataAccessObject(conn);
+//    }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {
 
         HttpSession session = request.getSession();
 
+        DBConnector conn = new DBConnector();
+        DataAccessObject DAO = new DataAccessObject(conn);
+
         ArrayList<Bottom> bottoms = DAO.getBottom();
         ArrayList<Toppings> toppings = DAO.getToppings();
         session.setAttribute("bottoms", bottoms);
         session.setAttribute("toppings", toppings);
-
-        ArrayList<Cupcake> basket = (ArrayList<Cupcake>) session.getAttribute("basket");
-
-        if (basket == null) { //BASKET ER ALTID NULL!?!?!?!??!?!?
-            basket = new ArrayList<Cupcake>();
+        
+        ArrayList<Cupcake> basket = new ArrayList<Cupcake>();
+        
+        if(session.getAttribute("basket") != null){
+            basket = (ArrayList<Cupcake>) session.getAttribute("basket");
         }
-
+        
         String bottom = request.getParameter("bottomHid");
         System.out.println(bottom);
         String topping = request.getParameter("toppingHid");
         System.out.println(topping);
-
-//        if ("true".equals(request.getParameter("addToBasket"))) {
-//            System.out.println("testing123");
-//            String bottom = request.getParameter("bottomHid");
-//            String topping = request.getParameter("toppingHid");
-//            //basket = (ArrayList<Cupcake>) session.getAttribute("basket");
-//            float price = DAO.getPriceOfCupcake(bottom, topping);
-//            Cupcake c = new Cupcake(bottom, topping, price, 1);
-//            basket.add(c);
-//            for (Cupcake cupcake : basket) {
-//                System.out.println(cupcake.getBottom());
-//                System.out.println(cupcake.getTopping());
-//            }
-//            //request.setAttribute("basket", basket);
-//            User user = (User) request.getAttribute("user");
-//            int topNo = DAO.getNumberOfTopping(topping);
-//            int botNo = DAO.getNumberOfTopping(topping);
-//            DAO.createOrder(topNo, botNo, user.getUno(), price);
-//        }
+        
+        try {
+            if (topping != null && bottom != null) {
+                float price = DAO.getPriceOfCupcake(bottom, topping);
+                Cupcake c = new Cupcake(bottom, topping, price, 1);
+                basket.add(c);
+                System.out.println(basket.size());
+            } 
+        } catch (Exception e) {
+        }
+        
+        session.setAttribute("basket", basket);
         request.getRequestDispatcher("/shop.jsp").forward(request, response);
     }
 
