@@ -33,7 +33,7 @@
                 </ul>
             </div>
         </nav>
-        
+
         <div class="main-div">
             <h1>Hello World!</h1>
             <form action="shop" method="get">
@@ -50,14 +50,14 @@
                     <tbody>
                         <c:forEach items="${bottoms}" var="bottom">
                             <tr>
-                                <td><input type="radio" name="bottom" value="${bottom.getName()}" checked="true"/></td>
+                                <td><input type="radio" name="bottom" value="${bottom.getName()};${bottom.getPrice()}" checked="true" onChange="calculatePrice()"/></td>
                                 <td>${bottom.getName()}</td>
                                 <td>${bottom.getPrice()}</td>
                             </tr>
                         </c:forEach>
                     </tbody>
                 </table>
-              
+
                 <table border="2" class="table">
                     <p>Topping</p>
                     <thead>
@@ -70,15 +70,32 @@
                     <tbody>
                         <c:forEach items="${toppings}" var="topping">
                             <tr>
-                                <td><input type="radio" name="topping" value="${topping.getName()}" checked="true"/></td>
+                                <td><input type="radio" name="topping" value="${topping.getName()};${topping.getPrice()}" checked="true" onChange="calculatePrice()"/></td>
                                 <td>${topping.getName()}</td>
                                 <td>${topping.getPrice()}</td>
                             </tr>
                         </c:forEach>
                     </tbody>
                 </table>
+                
+                <p>Total price: </p> <label id="totalPriceLabel">#</label>
                 <input type="submit" value="Add">
             </form>
         </div>
     </body>
+
+    <script>
+        function calculatePrice() {            
+            var checked1 = document.querySelector('input[name = "topping"]:checked').value.split(';');
+            var checked2 = document.querySelector('input[name = "bottom"]:checked').value.split(';');
+            
+            alert(checked1[1]);
+            alert(checked2[1]);
+            
+            var totalPrice = +checked1[1] + +checked2[1];
+            
+            document.getElementById('totalPriceLabel').innerHTML = totalPrice;
+        }
+    </script>
+
 </html>
