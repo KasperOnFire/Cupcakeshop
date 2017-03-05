@@ -15,10 +15,11 @@ import javax.servlet.http.*;
 public class shop extends HttpServlet {
 
     DBConnector conn;
-    DataAccessObject DAO = new DataAccessObject(conn);
+    DataAccessObject DAO;
 
     public shop() throws Exception {
         this.conn = new DBConnector();
+        DAO = new DataAccessObject(conn);
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -36,16 +37,16 @@ public class shop extends HttpServlet {
             basket = new ArrayList<Cupcake>();
         }
 
-        if (request.getParameter("addToBasket").equals("true")) {
-            System.out.println("Testing addToBasket");
-            basket = (ArrayList<Cupcake>) session.getAttribute("basket");
-            String bottom = request.getParameter("bottom");
-            String topping = request.getParameter("topping");
-            float price = DAO.getPriceOfCupcake(bottom, topping);
-            Cupcake c = new Cupcake(bottom, topping, price, 1);
-            basket.add(c);
-            request.setAttribute("basket", basket);
-        }
+//        if (request.getParameter("addToBasket").equals("true")) {
+//            System.out.println("Testing addToBasket");
+//            basket = (ArrayList<Cupcake>) session.getAttribute("basket");
+//            String bottom = request.getParameter("bottom");
+//            String topping = request.getParameter("topping");
+//            float price = DAO.getPriceOfCupcake(bottom, topping);
+//            Cupcake c = new Cupcake(bottom, topping, price, 1);
+//            basket.add(c);
+//            request.setAttribute("basket", basket);
+//        }
         request.getRequestDispatcher("/shop.jsp").forward(request, response);
     }
 
