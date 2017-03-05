@@ -33,21 +33,18 @@ public class shop extends HttpServlet {
         DBConnector conn = new DBConnector();
         DataAccessObject DAO = new DataAccessObject(conn);
 
-        
-        if(request.getParameter("addToBasket") != null){
+        if (request.getParameter("addToBasket") != null) {
             request.getParameter("bottom");
             request.getParameter("topping");
-            
-            
-            
+
         }
-        
+
         ArrayList<Bottom> bottoms = DAO.getBottom();
         ArrayList<Toppings> toppings = DAO.getToppings();
-        
+
         session.setAttribute("bottoms", bottoms);
         session.setAttribute("toppings", toppings);
-    
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

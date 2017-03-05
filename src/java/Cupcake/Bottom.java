@@ -3,12 +3,12 @@ package Cupcake;
 public class Bottom {
 
     int bno;
-    String bottom;
+    String name;
     float price;
 
-    public Bottom(int bno, String bottom, float price) {
+    public Bottom(int bno, String name, float price) {
         this.bno = bno;
-        this.bottom = bottom;
+        this.name = name;
         this.price = price;
     }
 
@@ -16,8 +16,8 @@ public class Bottom {
         return bno;
     }
 
-    public String getBottom() {
-        return bottom;
+    public String getName() {
+        return name;
     }
 
     public float getPrice() {

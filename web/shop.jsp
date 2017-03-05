@@ -12,7 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Shop</title>
         <link rel="stylesheet" href="css/main.css">
-        <link href="js/main.js"
+        <link href="js/main.js">
     </head>
     <body>
         <!-- Navbar -->
@@ -21,18 +21,17 @@
             <form action="shop" method="post">
                 <input type="hidden" name="addToBasket" value="addToBasket">
                 <select name="bottom">
-                    <c:forEach items="${bottoms}" var="bottom">
+                    <c:forEach items="${bottoms}" var="bottom" varStatus="loop">
                         <option value="${bottom.name}">${bottom.name} - ${bottom.price}</option>
                     </c:forEach>
-                    <option value="getvaluefromelement">name price</option>
                 </select>
                 <select name="topping">
                     <c:forEach items="${toppings}" var="topping">
                         <option value="${topping.name}">${topping.name} - ${topping.price}</option>
                     </c:forEach>
                 </select>
-                
                 <input type="submit" name="add" value="add">
             </form>
+        </div>
     </body>
 </html>
