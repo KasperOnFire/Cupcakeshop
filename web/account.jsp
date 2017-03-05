@@ -41,9 +41,7 @@
                     <th>Order no.</th>
                     <th>Bottom</th>
                     <th>Topping</th>
-                    <th>Amount</th>
                     <th>Price</th>
-                    <th>Order Price</th>
                 </tr>
                 <!-- foreach here -->
                 <c:forEach items="${orders}" var="order">
@@ -51,9 +49,7 @@
                         <td value="${order.getOno()}">${order.getOno()}</td>
                         <td value="${order.getBottom()}">${order.getBottom()}</td>
                         <td value="${order.getTopping()}">${order.getTopping()}</td>
-                        <td value="${order.getAmount()}">${order.getAmount()}</td>
-                        <td value="${order.getPrice()}">${order.getPrice()}</td>'
-                        <td value="${order.getTotalPrice()}"></td>
+                        <td value="${order.getTotalPrice()}">${order.getTotalPrice()}</td>
                     </tr>
                 </c:forEach>
                 <!-- end foreach -->

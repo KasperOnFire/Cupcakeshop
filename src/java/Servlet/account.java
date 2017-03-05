@@ -1,36 +1,38 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Servlet;
 
+import Cupcake.Orders;
+import Data.DBConnector;
+import Data.DataAccessObject;
+import User.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-/**
- *
- * @author Kasper
- */
+
 @WebServlet(name = "account", urlPatterns = {"/account"})
 public class account extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    DBConnector conn;
+    DataAccessObject DAO;
+    
+    public account() throws Exception {
+        this.conn = new DBConnector();
+        DAO = new DataAccessObject(conn);
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         HttpSession session = request.getSession();
+        
+        User user = (User) session.getAttribute("user");
+        
+        ArrayList<Orders> order = DAO.getOrdersByName(user.getUname());
+        
+        session.setAttribute("orders", order);
         
         if ((Boolean) session.getAttribute("loggedIn")) {
             request.getRequestDispatcher("/account.jsp").forward(request, response);

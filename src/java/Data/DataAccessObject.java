@@ -88,7 +88,7 @@ public class DataAccessObject {
         User user = this.getUserByUsername(username);
 
         PreparedStatement stmt = null;
-        String SQL = "SELECT o.ono, o.uno, b.bottom, b.price bPrice, t.topping, t.price tPrice, o.totalPrice FROM orders o NATURAL JOIN toppings t, bottoms b WHERE o.bno = b.bno AND o.tno = t.tno ADN uno = ?";
+        String SQL = "SELECT o.ono, o.uno, b.bottom, b.price bPrice, t.topping, t.price tPrice, o.totalPrice FROM orders o NATURAL JOIN toppings t, bottoms b WHERE o.bno = b.bno AND o.tno = t.tno AND uno = ?";
         try {
             stmt = conn.prepareStatement(SQL);
             stmt.setInt(1, user.getUno());
