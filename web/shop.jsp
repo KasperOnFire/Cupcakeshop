@@ -1,9 +1,3 @@
-<%-- 
-    Document   : shop
-    Created on : 03-03-2017, 09:09:05
-    Author     : brein
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -39,21 +33,51 @@
                 </ul>
             </div>
         </nav>
+        
         <div class="main-div">
             <h1>Hello World!</h1>
-            <form action="shop" method="post">
+            <form action="shop" method="get">
                 <input type="hidden" name="addToBasket" value="addToBasket">
-                <select name="bottom">
-                    <c:forEach items="${bottoms}" var="bottom">
-                        <option value="${bottom.getName()}">${bottom.getName()} - ${bottom.getPrice()}</option>
-                    </c:forEach>
-                </select>
-                <select name="topping">
-                    <c:forEach items="${toppings}" var="topping">
-                        <option value="${topping.getName()}">${topping.getName()} - ${topping.getPrice()}</option>
-                    </c:forEach>
-                </select>
-                <input type="submit" name="add" value="add">
+                <table border="2" class="table">
+                    <p>Bottom</p>
+                    <thead>
+                        <tr>
+                            <th>Select</th>
+                            <th>Flavor</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="${bottoms}" var="bottom">
+                            <tr>
+                                <td><input type="radio" name="bottom" value="${bottom.getName()}" checked="true"/></td>
+                                <td>${bottom.getName()}</td>
+                                <td>${bottom.getPrice()}</td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+              
+                <table border="2" class="table">
+                    <p>Topping</p>
+                    <thead>
+                        <tr>
+                            <th>Select</th>
+                            <th>Flavor</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="${toppings}" var="topping">
+                            <tr>
+                                <td><input type="radio" name="topping" value="${topping.getName()}" checked="true"/></td>
+                                <td>${topping.getName()}</td>
+                                <td>${topping.getPrice()}</td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+                <input type="submit" value="Add">
             </form>
         </div>
     </body>

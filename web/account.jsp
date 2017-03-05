@@ -1,9 +1,3 @@
-<%-- 
-    Document   : basket
-    Created on : 02-03-2017, 14:57:19
-    Author     : brein
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -42,7 +36,7 @@
         <div class="main-div">
             <h1>Cupcakeshop</h1>
             <h2>Your orders</h2>
-            <table border=2 class="baskettable">
+            <table border="2" class="table">
                 <tr>
                     <th>Order no.</th>
                     <th>Bottom</th>
