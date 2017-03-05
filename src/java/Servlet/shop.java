@@ -11,28 +11,31 @@ import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
 
-
 @WebServlet(name = "shop", urlPatterns = {"/shop"})
 public class shop extends HttpServlet {
-    
+
+    DBConnector conn;
+    DataAccessObject DAO = new DataAccessObject(conn);
+
+    public shop() throws Exception {
+        this.conn = new DBConnector();
+    }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {
-        
+
         HttpSession session = request.getSession();
-        
-        DBConnector conn = new DBConnector();
-        DataAccessObject DAO = new DataAccessObject(conn);
-        
+
         ArrayList<Bottom> bottoms = DAO.getBottom();
         ArrayList<Toppings> toppings = DAO.getToppings();
         session.setAttribute("bottoms", bottoms);
         session.setAttribute("toppings", toppings);
-        
+
         ArrayList<Cupcake> basket = (ArrayList<Cupcake>) session.getAttribute("basket");
         if (basket == null) {
             basket = new ArrayList<Cupcake>();
         }
-        
+
         if (request.getParameter("addToBasket") != null) {
             basket = (ArrayList<Cupcake>) session.getAttribute("basket");
             String bottom = request.getParameter("bottom");
@@ -42,7 +45,6 @@ public class shop extends HttpServlet {
             basket.add(c);
             request.setAttribute("basket", basket);
         }
-        
         request.getRequestDispatcher("/shop.jsp").forward(request, response);
     }
 
