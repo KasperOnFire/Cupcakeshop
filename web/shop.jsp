@@ -50,7 +50,7 @@
                     <tbody>
                         <c:forEach items="${bottoms}" var="bottom">
                             <tr>
-                                <td><input type="radio" name="bottom" value="${bottom.getName()};${bottom.getPrice()}" checked="true" onChange="calculatePrice()"/></td>
+                                <td><input type="radio" name="bottom" value="${bottom.getName()};${bottom.getPrice()}" onChange="calculatePrice()"/></td>
                                 <td>${bottom.getName()}</td>
                                 <td>${bottom.getPrice()}</td>
                             </tr>
@@ -70,7 +70,7 @@
                     <tbody>
                         <c:forEach items="${toppings}" var="topping">
                             <tr>
-                                <td><input type="radio" name="topping" value="${topping.getName()};${topping.getPrice()}" checked="true" onChange="calculatePrice()"/></td>
+                                <td><input type="radio" name="topping" value="${topping.getName()};${topping.getPrice()}" onChange="calculatePrice()"/></td>
                                 <td>${topping.getName()}</td>
                                 <td>${topping.getPrice()}</td>
                             </tr>
@@ -88,9 +88,9 @@
         function calculatePrice() {            
             var checked1 = document.querySelector('input[name = "topping"]:checked').value.split(';');
             var checked2 = document.querySelector('input[name = "bottom"]:checked').value.split(';');
-           
+
             var totalPrice = +checked1[1] + +checked2[1];
-            
+   
             document.getElementById('totalPriceLabel').innerHTML = totalPrice;
         }
     </script>
