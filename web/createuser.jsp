@@ -42,7 +42,7 @@
         </nav>
         <div class="main-div">
             
-            <form action="createuser" method="get">
+            <form action="createuser" method="post">
                 <div class="container">
                     <div class="row main">
                         <div class="panel-heading">
