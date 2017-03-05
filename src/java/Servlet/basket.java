@@ -41,10 +41,20 @@ public class basket extends HttpServlet {
         }
         
         String bottom = request.getParameter("bottomHid");
+        System.out.println(bottom);
         String topping = request.getParameter("toppingHid");
+        System.out.println(topping);
         float price = DAO.getPriceOfCupcake(bottom, topping);
+        System.out.println(price);
         Cupcake c = new Cupcake(bottom, topping, price, 1);
         basket.add(c);
+        
+        for (Cupcake cupcake : basket) {
+            System.out.println(cupcake.getBottom());
+            System.out.println(cupcake.getTopping());
+            System.out.println(cupcake.getPrice());
+            System.out.println(cupcake.getAmount());
+        }
         
         session.setAttribute("basket", basket);
         User user = (User) request.getAttribute("user");

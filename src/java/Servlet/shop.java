@@ -39,6 +39,11 @@ public class shop extends HttpServlet {
             basket = new ArrayList<Cupcake>();
         }
 
+        String bottom = request.getParameter("bottomHid");
+        System.out.println(bottom);
+        String topping = request.getParameter("toppingHid");
+        System.out.println(topping);
+
 //        if ("true".equals(request.getParameter("addToBasket"))) {
 //            System.out.println("testing123");
 //            String bottom = request.getParameter("bottomHid");
