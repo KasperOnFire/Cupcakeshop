@@ -5,13 +5,15 @@
  */
 package Servlet;
 
+import Cupcake.*;
+import Data.*;
+import User.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 
 /**
  *
@@ -19,10 +21,37 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "basket", urlPatterns = {"/basket"})
 public class basket extends HttpServlet {
-
+    
+    DBConnector conn;
+    DataAccessObject DAO;
+    
+    public basket() throws Exception {
+        this.conn = new DBConnector();
+        DAO = new DataAccessObject(conn);
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
+        HttpSession session = request.getSession();
+        
+        ArrayList<Cupcake> basket = (ArrayList<Cupcake>) session.getAttribute("basket");
+        if (basket == null) {
+            basket = new ArrayList<Cupcake>();
+        }
+        
+        String bottom = request.getParameter("bottomHid");
+        String topping = request.getParameter("toppingHid");
+        float price = DAO.getPriceOfCupcake(bottom, topping);
+        Cupcake c = new Cupcake(bottom, topping, price, 1);
+        basket.add(c);
+        
+        session.setAttribute("basket", basket);
+        User user = (User) request.getAttribute("user");
+        int topNo = DAO.getNumberOfTopping(topping);
+        int botNo = DAO.getNumberOfTopping(topping);
+        //DAO.createOrder(topNo, botNo, user.getUno(), price);
+        
         request.getRequestDispatcher("/basket.jsp").forward(request, response);
     }
 

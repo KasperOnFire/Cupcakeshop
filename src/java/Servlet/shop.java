@@ -34,29 +34,29 @@ public class shop extends HttpServlet {
         session.setAttribute("toppings", toppings);
 
         ArrayList<Cupcake> basket = (ArrayList<Cupcake>) session.getAttribute("basket");
-        
+
         if (basket == null) { //BASKET ER ALTID NULL!?!?!?!??!?!?
             basket = new ArrayList<Cupcake>();
         }
 
-        if(request.getParameter("addToBasket") != null){
-            System.out.println("testing123");
-            String bottom = request.getParameter("bottomHid");
-            String topping = request.getParameter("toppingHid");
-            //basket = (ArrayList<Cupcake>) session.getAttribute("basket");
-            float price = DAO.getPriceOfCupcake(bottom, topping);
-            Cupcake c = new Cupcake(bottom, topping, price, 1);
-            basket.add(c);
-            for (Cupcake cupcake : basket) {
-                System.out.println(cupcake.getBottom());
-                System.out.println(cupcake.getTopping());                
-            }
-            //request.setAttribute("basket", basket);
-            User user = (User) request.getAttribute("user");
-            int topNo = DAO.getNumberOfTopping(topping);
-            int botNo = DAO.getNumberOfTopping(topping);
-            DAO.createOrder(topNo, botNo, user.getUno(), price);
-        }
+//        if ("true".equals(request.getParameter("addToBasket"))) {
+//            System.out.println("testing123");
+//            String bottom = request.getParameter("bottomHid");
+//            String topping = request.getParameter("toppingHid");
+//            //basket = (ArrayList<Cupcake>) session.getAttribute("basket");
+//            float price = DAO.getPriceOfCupcake(bottom, topping);
+//            Cupcake c = new Cupcake(bottom, topping, price, 1);
+//            basket.add(c);
+//            for (Cupcake cupcake : basket) {
+//                System.out.println(cupcake.getBottom());
+//                System.out.println(cupcake.getTopping());
+//            }
+//            //request.setAttribute("basket", basket);
+//            User user = (User) request.getAttribute("user");
+//            int topNo = DAO.getNumberOfTopping(topping);
+//            int botNo = DAO.getNumberOfTopping(topping);
+//            DAO.createOrder(topNo, botNo, user.getUno(), price);
+//        }
         request.getRequestDispatcher("/shop.jsp").forward(request, response);
     }
 
