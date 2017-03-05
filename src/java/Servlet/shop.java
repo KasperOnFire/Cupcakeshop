@@ -4,7 +4,6 @@ import Cupcake.Bottom;
 import Cupcake.Toppings;
 import Data.DBConnector;
 import Data.DataAccessObject;
-import User.Password;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -24,11 +23,6 @@ public class shop extends HttpServlet {
 
         HttpSession session = request.getSession();
 
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-
-        Password pass = new Password();
-
         DBConnector conn = new DBConnector();
         DataAccessObject DAO = new DataAccessObject(conn);
 
@@ -39,11 +33,10 @@ public class shop extends HttpServlet {
 
         ArrayList<Bottom> bottoms = DAO.getBottom();
         ArrayList<Toppings> toppings = DAO.getToppings();
-        
-        
+
         session.setAttribute("bottoms", bottoms);
         session.setAttribute("toppings", toppings);
-        
+
         request.getRequestDispatcher("shop.jsp").forward(request, response);
     }
 
