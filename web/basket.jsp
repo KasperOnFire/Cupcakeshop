@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,22 +20,20 @@
             <h2>Your basket</h2>
             <table class="baskettable">
                 <tr>
-                    <th>
-                    <td>Bottom</td>
-                    <td>Topping</td>
-                    <td>Amount</td>
-                    <td>Price</td>
-                    </th>
+                    <th>Bottom</th>
+                    <th>Topping</th>
+                    <th>Amount</th>
+                    <th>Price</th>
                 </tr>
                 <!-- foreach here -->
-                <c:forEach items="${orders}" var="order">
+                <c:forEach items="${basket}" var="cupcake">
                     <tr>
-                    <td value="${order.bottom}">${order.bottom}</td>
-                    <td value="${order.topping}">${order.topping}</td>
-                    <td value="${order.amount}">${order.amount}</td>
-                    <td value="${order.price}">${order.price}</td>
+                        <td>${cupcake.getBottom}</td>
+                        <td>${cupcake.getTopping}</td>
+                        <td>${cupcake.getAmount}</td>
+                        <td>${cupcake.getPrice}</td>
                     </tr>
-                    </c:forEach>
+                </c:forEach>
                 <!-- end foreach -->
             </table>
             <form action="order" method="post">

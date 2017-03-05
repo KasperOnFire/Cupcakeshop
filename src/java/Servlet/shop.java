@@ -1,7 +1,6 @@
 package Servlet;
 
-import Cupcake.Bottom;
-import Cupcake.Toppings;
+import Cupcake.*;
 import Data.DBConnector;
 import Data.DataAccessObject;
 import java.io.IOException;
@@ -26,18 +25,23 @@ public class shop extends HttpServlet {
         DBConnector conn = new DBConnector();
         DataAccessObject DAO = new DataAccessObject(conn);
 
-        if (request.getParameter("addToBasket") != null) {
-            request.getParameter("bottom");
-            request.getParameter("topping");
-        }
-
         ArrayList<Bottom> bottoms = DAO.getBottom();
         ArrayList<Toppings> toppings = DAO.getToppings();
-
         session.setAttribute("bottoms", bottoms);
         session.setAttribute("toppings", toppings);
+        
+        ArrayList<Cupcake> basket = new ArrayList<Cupcake>();
 
-        request.getRequestDispatcher("shop.jsp").forward(request, response);
+        if (request.getParameter("addToBasket") != null) {
+            basket = (ArrayList<Cupcake>) session.getAttribute("basket");
+            String bottom = request.getParameter("bottom");
+            String topping = request.getParameter("topping");
+            float price = DAO.getPriceOfCupcake(bottom, topping);
+            Cupcake c = new Cupcake(bottom, topping, price, 1);
+            basket.add(c);
+        }
+
+        request.getRequestDispatcher("/shop.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

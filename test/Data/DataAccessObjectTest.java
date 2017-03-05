@@ -7,6 +7,7 @@ package Data;
 
 import Cupcake.*;
 import User.*;
+import java.sql.*;
 import java.util.*;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -57,5 +58,18 @@ public class DataAccessObjectTest {
         System.out.println(result.get(2));
         assertEquals(expResult, (result != null));
 
+    }
+
+    /**
+     * Test of getPriceOfCupcake method, of class DataAccessObject.
+     */
+    @Test
+    public void testGetPriceOfCupcake() {
+        System.out.println("getPrice");
+        DataAccessObject instance = dao;
+        float expResult = 15;
+        float result = instance.getPriceOfCupcake("Almond", "Lemon");
+        System.out.println(result);
+        assertEquals(expResult, result, 0);
     }
 }
