@@ -36,15 +36,10 @@ public class shop extends HttpServlet {
         if (request.getParameter("addToBasket") != null) {
             request.getParameter("bottom");
             request.getParameter("topping");
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
         }
 
         ArrayList<Bottom> bottoms = DAO.getBottom();
         ArrayList<Toppings> toppings = DAO.getToppings();
-<<<<<<< HEAD
         
         
         session.setAttribute("bottoms", bottoms);
@@ -52,12 +47,6 @@ public class shop extends HttpServlet {
         
         request.getRequestDispatcher("shop.jsp").forward(request, response);
     
-=======
-
-        session.setAttribute("bottoms", bottoms);
-        session.setAttribute("toppings", toppings);
-
->>>>>>> origin/master
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

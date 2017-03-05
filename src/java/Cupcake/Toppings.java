@@ -16,7 +16,7 @@ public class Toppings {
         return tno;
     }
 
-    public String getTop() {
+    public String getName() {
         return name;
     }
 
