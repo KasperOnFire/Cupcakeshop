@@ -15,7 +15,11 @@
         <link rel="icon" href="img/favicon.png">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/main.css">
+<<<<<<< HEAD
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+=======
+        <link href="js/main.js">
+>>>>>>> origin/master
     </head>
     <body>
         <!-- Navbar -->
@@ -45,11 +49,15 @@
             <form action="shop" method="post">
                 <input type="hidden" name="addToBasket" value="addToBasket">
                 <select name="bottom">
+<<<<<<< HEAD
 
                     <c:forEach items="${bottoms}" var="bottom">
                         <option value="${bottom.getBottom()}">${bottom.getBottom()} - ${bottom.getPrice()}</option>
+=======
+                    <c:forEach items="${bottoms}" var="bottom" varStatus="loop">
+                        <option value="${bottom.name}">${bottom.name} - ${bottom.price}</option>
+>>>>>>> origin/master
                     </c:forEach>
-                    <option value="getvaluefromelement">name price</option>
                 </select>
                 <select name="topping">
                     <c:forEach items="${toppings}" var="topping">
