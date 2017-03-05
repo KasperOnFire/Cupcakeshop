@@ -37,7 +37,7 @@
         <div class="main-div">
             <h1>Hello World!</h1>
             <form action="shop" method="get">
-                <input type="hidden" name="addToBasket" value="addToBasket">
+                <input type="hidden" name="addToBasket" value="true">
                 <table border="2" class="table">
                     <p>Bottom</p>
                     <thead>

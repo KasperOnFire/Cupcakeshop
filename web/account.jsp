@@ -48,12 +48,12 @@
                 <!-- foreach here -->
                 <c:forEach items="${orders}" var="order">
                     <tr>
-                        <td value="${order.ono}">${order.ono}</td>
-                        <td value="${order.bottom}">${order.bottom}</td>
-                        <td value="${order.topping}">${order.topping}</td>
-                        <td value="${order.amount}">${order.amount}</td>
-                        <td value="${order.price}">${order.price}</td>'
-                        <td value="${order.totalPrice}"></td>
+                        <td value="${order.getOno()}">${order.getOno()}</td>
+                        <td value="${order.getBottom()}">${order.getBottom()}</td>
+                        <td value="${order.getTopping()}">${order.getTopping()}</td>
+                        <td value="${order.getAmount()}">${order.getAmount()}</td>
+                        <td value="${order.getPrice()}">${order.getPrice()}</td>'
+                        <td value="${order.getTotalPrice()}"></td>
                     </tr>
                 </c:forEach>
                 <!-- end foreach -->

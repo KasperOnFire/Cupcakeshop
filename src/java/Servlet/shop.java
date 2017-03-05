@@ -36,7 +36,8 @@ public class shop extends HttpServlet {
             basket = new ArrayList<Cupcake>();
         }
 
-        if (request.getParameter("addToBasket") != null) {
+        if (request.getParameter("addToBasket").equals("true")) {
+            System.out.println("Testing addToBasket");
             basket = (ArrayList<Cupcake>) session.getAttribute("basket");
             String bottom = request.getParameter("bottom");
             String topping = request.getParameter("topping");
