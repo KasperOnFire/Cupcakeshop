@@ -88,10 +88,7 @@
         function calculatePrice() {            
             var checked1 = document.querySelector('input[name = "topping"]:checked').value.split(';');
             var checked2 = document.querySelector('input[name = "bottom"]:checked').value.split(';');
-            
-            alert(checked1[1]);
-            alert(checked2[1]);
-            
+           
             var totalPrice = +checked1[1] + +checked2[1];
             
             document.getElementById('totalPriceLabel').innerHTML = totalPrice;
