@@ -6,7 +6,6 @@ import Data.DBConnector;
 import Data.DataAccessObject;
 import User.Password;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,7 +45,6 @@ public class shop extends HttpServlet {
         session.setAttribute("toppings", toppings);
         
         request.getRequestDispatcher("shop.jsp").forward(request, response);
-    
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
