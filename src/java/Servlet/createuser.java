@@ -11,23 +11,30 @@ import Data.DataAccessObject;
 import User.User;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(urlPatterns = {"/createuser"})
 public class createuser extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {
+
+        HttpSession session = request.getSession();
         
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        
+
         DBConnector conn = new DBConnector();
         DataAccessObject DAO = new DataAccessObject(conn);
-        
-        DAO.createUser(username, password); //VIRKER
-        //User user = DAO.getUserByUsername("blin"); //VIRKER
+
+        if (DAO.createUser(username, password)) {
+            session.setAttribute("loggedIn", true);
+            session.setAttribute("user", DAO.getUserByUsername(username));
+            request.getRequestDispatcher("/shop.jsp").forward(request, response);
+        }else{
+            request.getRequestDispatcher("/createuser.jsp").forward(request, response);
+        }
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

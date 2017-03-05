@@ -3,6 +3,7 @@ package Servlet;
 import Cupcake.*;
 import Data.DBConnector;
 import Data.DataAccessObject;
+import User.User;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -50,7 +51,11 @@ public class shop extends HttpServlet {
                 System.out.println(cupcake.getBottom());
                 System.out.println(cupcake.getTopping());                
             }
-            request.setAttribute("basket", basket);
+            //request.setAttribute("basket", basket);
+            User user = (User) request.getAttribute("user");
+            int topNo = DAO.getNumberOfTopping(topping);
+            int botNo = DAO.getNumberOfTopping(topping);
+            DAO.createOrder(topNo, botNo, user.getUno(), price);
         }
         request.getRequestDispatcher("/shop.jsp").forward(request, response);
     }

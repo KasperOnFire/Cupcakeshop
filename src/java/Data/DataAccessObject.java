@@ -67,7 +67,7 @@ public class DataAccessObject {
         return user;
     }
 
-    public void createOrder(int top, int bottom, int uno, int totalPrice) { //IKKE TESTET
+    public void createOrder(int top, int bottom, int uno, float totalPrice) { //IKKE TESTET
         PreparedStatement stmt = null;
         String SQL = "INSERT INTO orders (uno, bno, tno, totalprice) VALUES (?, ?, ?, ?)";
         try {
@@ -75,7 +75,7 @@ public class DataAccessObject {
             stmt.setInt(1, uno);
             stmt.setInt(2, bottom);
             stmt.setInt(3, top);
-            stmt.setInt(4, totalPrice);
+            stmt.setFloat(4, totalPrice);
             stmt.executeQuery();
         } catch (Exception e) {
             e.printStackTrace();
@@ -226,5 +226,39 @@ public class DataAccessObject {
 
         }
         return price;
+    }
+
+    public int getNumberOfBottom(String bottom) {
+        PreparedStatement stmt = null;
+        String SQL = "select bno from bottoms where bottom=?";
+        int number = -1;
+        try {
+            stmt = conn.prepareStatement(SQL);
+            stmt.setString(1, bottom);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                number = rs.getInt("bno");
+            }
+        } catch (SQLException ex) {
+
+        }
+        return number;
+    }
+
+    public int getNumberOfTopping(String topping) {
+        PreparedStatement stmt = null;
+        String SQL = "select tno from toppings where topping=?";
+        int number = -1;
+        try {
+            stmt = conn.prepareStatement(SQL);
+            stmt.setString(1, topping);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                number = rs.getInt("tno");
+            }
+        } catch (SQLException ex) {
+
+        }
+        return number;
     }
 }
