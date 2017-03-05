@@ -79,7 +79,7 @@
                 </table>
                 <p>Total price: </p> <label id="totalPriceLabel">#</label>
                 <br>
-                <input type="submit" value="Add">
+                <input class="btn btn-primary" type="submit" value="Add">
             </form>
         </div>
     </body>
