@@ -33,20 +33,25 @@ public class shop extends HttpServlet {
         session.setAttribute("toppings", toppings);
 
         ArrayList<Cupcake> basket = (ArrayList<Cupcake>) session.getAttribute("basket");
+        
         if (basket == null) {
             basket = new ArrayList<Cupcake>();
         }
 
-//        if (request.getParameter("addToBasket").equals("true")) {
-//            System.out.println("Testing addToBasket");
-//            basket = (ArrayList<Cupcake>) session.getAttribute("basket");
-//            String bottom = request.getParameter("bottom");
-//            String topping = request.getParameter("topping");
-//            float price = DAO.getPriceOfCupcake(bottom, topping);
-//            Cupcake c = new Cupcake(bottom, topping, price, 1);
-//            basket.add(c);
-//            request.setAttribute("basket", basket);
-//        }
+        if(request.getParameter("addToBasket") != null){
+            System.out.println("testing123");
+            String bottom = request.getParameter("bottomHid");
+            String topping = request.getParameter("toppingHid");
+            //basket = (ArrayList<Cupcake>) session.getAttribute("basket");
+            float price = DAO.getPriceOfCupcake(bottom, topping);
+            Cupcake c = new Cupcake(bottom, topping, price, 1);
+            basket.add(c);
+            for (Cupcake cupcake : basket) {
+                System.out.println(cupcake.getBottom());
+                System.out.println(cupcake.getTopping());                
+            }
+            request.setAttribute("basket", basket);
+        }
         request.getRequestDispatcher("/shop.jsp").forward(request, response);
     }
 

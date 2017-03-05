@@ -49,6 +49,7 @@
                 </tr>
                 <!-- foreach here -->
                 <c:forEach items="${basket}" var="cupcake">
+                    <p>NEJ</p>
                     <tr>
                         <td>${cupcake.getBottom()}</td>
                         <td>${cupcake.getTopping()}</td>

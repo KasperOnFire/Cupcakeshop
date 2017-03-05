@@ -79,23 +79,23 @@
                 </table>
                 <p>Total price: </p> <label id="totalPriceLabel">#</label>
                 <br>
-                <input type="hidden" value="" name="bottom"
-                <input type="hidden" value="" name="topping"
-                <input class="btn btn-primary" type="submit" value="Add" onclick="calculatePrice()">
+                <input type="hidden" value="" name="bottomHid" id="bottom">
+                <input type="hidden" value="" name="toppingHid" id="topping">
+                <input class="btn btn-primary" type="submit" value="Add" id="submitID" onclick="calculatePrice()">
             </form>
         </div>
     </body>
 
     <script>
-        function calculatePrice() {            
+        function calculatePrice() {
             var checked1 = document.querySelector('input[name = "toppingRad"]:checked').value.split(';');
             var checked2 = document.querySelector('input[name = "bottomRad"]:checked').value.split(';');
-            
+
             var totalPrice = +checked1[1] + +checked2[1];
-   
+
             document.getElementById('totalPriceLabel').innerHTML = totalPrice;
-            document.getElementById('bottom').innerHTML = checked2[0];
-            document.getElementById('topping').innerHTML = checked1[0];
+            document.getElementById('bottom').value = checked2[0];
+            document.getElementById('topping').value = checked1[0];           
         }
     </script>
 
