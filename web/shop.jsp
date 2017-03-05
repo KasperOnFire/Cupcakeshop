@@ -77,7 +77,7 @@
                         </c:forEach>
                     </tbody>
                 </table>
-                <input type="submit" value="Add">
+                <input class="btn btn-primary" type="submit" value="Add">
             </form>
         </div>
     </body>
