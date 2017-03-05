@@ -5,9 +5,6 @@
  */
 package Data;
 
-import Cupcake.*;
-import User.*;
-import java.sql.*;
 import java.util.*;
 import org.junit.After;
 import org.junit.AfterClass;

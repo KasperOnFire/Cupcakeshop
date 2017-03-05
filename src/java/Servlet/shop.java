@@ -7,31 +7,32 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.*;
+import javax.servlet.annotation.*;
+import javax.servlet.http.*;
+
 
 @WebServlet(name = "shop", urlPatterns = {"/shop"})
 public class shop extends HttpServlet {
-
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {
-
+        
         HttpSession session = request.getSession();
-
+        
         DBConnector conn = new DBConnector();
         DataAccessObject DAO = new DataAccessObject(conn);
-
+        
         ArrayList<Bottom> bottoms = DAO.getBottom();
         ArrayList<Toppings> toppings = DAO.getToppings();
         session.setAttribute("bottoms", bottoms);
         session.setAttribute("toppings", toppings);
         
-        ArrayList<Cupcake> basket = new ArrayList<Cupcake>();
-
+        ArrayList<Cupcake> basket = (ArrayList<Cupcake>) session.getAttribute("basket");
+        if (basket == null) {
+            basket = new ArrayList<Cupcake>();
+        }
+        
         if (request.getParameter("addToBasket") != null) {
             basket = (ArrayList<Cupcake>) session.getAttribute("basket");
             String bottom = request.getParameter("bottom");
@@ -39,8 +40,9 @@ public class shop extends HttpServlet {
             float price = DAO.getPriceOfCupcake(bottom, topping);
             Cupcake c = new Cupcake(bottom, topping, price, 1);
             basket.add(c);
+            request.setAttribute("basket", basket);
         }
-
+        
         request.getRequestDispatcher("/shop.jsp").forward(request, response);
     }
 

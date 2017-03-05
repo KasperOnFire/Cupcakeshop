@@ -11,6 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>My Basket</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
@@ -18,7 +19,7 @@
         <div class="main-div">
             <h1>Cupcakeshop</h1>
             <h2>Your basket</h2>
-            <table class="baskettable">
+            <table class="table">
                 <tr>
                     <th>Bottom</th>
                     <th>Topping</th>
@@ -28,10 +29,10 @@
                 <!-- foreach here -->
                 <c:forEach items="${basket}" var="cupcake">
                     <tr>
-                        <td>${cupcake.getBottom}</td>
-                        <td>${cupcake.getTopping}</td>
-                        <td>${cupcake.getAmount}</td>
-                        <td>${cupcake.getPrice}</td>
+                        <td>${cupcake.getBottom()}</td>
+                        <td>${cupcake.getTopping()}</td>
+                        <td>${cupcake.getAmount()}</td>
+                        <td>${cupcake.getPrice()}</td>
                     </tr>
                 </c:forEach>
                 <!-- end foreach -->
