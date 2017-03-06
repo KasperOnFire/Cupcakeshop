@@ -4,13 +4,14 @@
     Author     : brein
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>My Basket</title>
+        <title>My basket</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="img/favicon.png">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/main.css">
     </head>
@@ -25,7 +26,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <c:choose>
                         <c:when test="${loggedIn == true}">
-                            <li class="active"><a href="basket">Basket</a></li>
+                            <li class="active"><a href="basket">Basket <c:if test="${basket != null}">(${basket.size()})</c:if></a></li>
                             <li><a href="account">Account</a></li>
                             <li><a href="logout">Logut</a></li>
                             </c:when>
@@ -59,9 +60,10 @@
                 <!-- end foreach -->
             </table>
             <form action="basket" method="get">
-                <input class="btn btn-primary" type="submit" value="Order" name="order"/>
+                <input type="hidden" value="true" name="order">
+                <input class="btn btn-primary" type="submit" value="Order"/>
                 <h3>Total price:</h3>
-                <h3 id="totalPrice">##,-</h3>
+                <h3 id="totalPrice">${totalPrice},-</h3>
             </form>
         </div>
     </body>

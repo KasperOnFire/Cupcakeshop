@@ -36,24 +36,31 @@ public class basket extends HttpServlet {
         
         ArrayList<Cupcake> basket = new ArrayList();
         
+        
         if(session.getAttribute("basket") != null){
-            System.out.println("eey!");
             basket = (ArrayList<Cupcake>) session.getAttribute("basket");
-            System.out.println("nope");
         }
         
-        if(session.getAttribute("order") != null){
+        float totalPrice = 0;
+        
+        for (Cupcake cupcake : basket) {
+            totalPrice += cupcake.getPrice();
+        }
+        
+        session.setAttribute("totalPrice", totalPrice);
+        
+        if(request.getParameter("order") != null){
             for (Cupcake cupcake : basket) {
-                System.out.println("hey");
                 User user = (User) session.getAttribute("user");
-                System.out.println("nope");
                 int topNo = DAO.getNumberOfTopping(cupcake.getTopping());
                 int botNo = DAO.getNumberOfBottom(cupcake.getBottom());
                 float price = cupcake.getPrice();
                 DAO.createOrder(topNo, botNo, user.getUno(), price);
             }
+            basket = new ArrayList();
         }
         
+        session.setAttribute("basket", basket);
         request.getRequestDispatcher("/basket.jsp").forward(request, response);
     }
 

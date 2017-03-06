@@ -76,7 +76,7 @@ public class DataAccessObject {
             stmt.setInt(2, bottom);
             stmt.setInt(3, top);
             stmt.setFloat(4, totalPrice);
-            stmt.executeQuery();
+            stmt.execute();
         } catch (Exception e) {
             e.printStackTrace();
         }

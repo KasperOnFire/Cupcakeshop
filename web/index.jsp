@@ -23,7 +23,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <c:choose>
                         <c:when test="${loggedIn == true}">
-                            <li><a href="basket">Basket</a></li>
+                            <li><a href="basket">Basket <c:if test="${basket != null}">(${basket.size()})</c:if></a></li>
                             <li><a href="account">Account</a></li>
                             <li><a href="logout">Logut</a></li>
                             </c:when>
